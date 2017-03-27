@@ -11,3 +11,12 @@
     background-color: #f5f5f5;
     border-right: 1px solid;
 }
+
+.add-room {
+    border-color: black;
+    position: relative;
+    left: 500px;
+    top: 200px;
+    background-color: #f5f5f5;
+    border-right: 1px solid;
+}

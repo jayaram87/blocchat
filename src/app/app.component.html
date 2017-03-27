@@ -1,6 +1,47 @@
 <div class="col-sm-3 col-md-2 sidebar">
     <h1><strong>Bloc Chat</strong></h1>
+    <button (click)="changeState('add')" class="btn btn-default">New Room</button>
+    <br/>
     <ul class="nav nav-sidebar">
-         <li class="active text" *ngFor="let room of rooms | async"><a href="#">{{room.$value}}</a></li>
+         <li class="active text" *ngFor="let room of rooms"><a href="#">{{room.id}}</a></li>
     </ul>
 </div>        
+
+
+<div *ngIf="appState == 'add'">
+    <div class="add-room">
+        <div class="large-12 columns">
+            <h3>Add Room</h3>
+            <form (submit)="addRoom(id.value, userId.value)">
+                <div class="row">
+                    <div class="large-6 columns">
+                        <label>Id
+                            <input type="text" placeholder="Id" #id>
+                        </label>        
+                    </div>
+                    <div class="large-6 columns">
+                        <label>User Id
+                            <input type="text" placeholder="Id" #userId>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-12">
+                        <button type="sumbit" class="btn-primary btn" value="Submit"></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="appState == 'default'">
+    <div class="col-sm-3 col-md-2 sidebar">
+        <h1><strong>Bloc Chat</strong></h1>
+        <button (click)="changeState('add')" class="btn btn-default">New Room</button>
+        <br/>
+        <ul class="nav nav-sidebar">
+            <li class="active text" *ngFor="let room of rooms"><a href="#">{{room.id}}</a></li>
+        </ul>
+    </div>        
+</div>
