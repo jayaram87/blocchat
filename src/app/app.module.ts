@@ -6,7 +6,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 
-import { FormComponent } from './components/forms/formroom.component';
+import { ChatroomComponent } from './components/chatroom/chatroom.component';
 
 import { AngularFireModule } from 'angularfire2';
 
@@ -22,7 +22,7 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    FormComponent
+    ChatroomComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,36 @@
+<div class="chat-room">
+    <div class="large-12 columns">
+        <form class="form-room" (submit)="addMessage(message)">
+            <div class="row">
+                <div class="large-6 columns">
+                    <label>Add Messages
+                        <input type="text" placeholder="Enter the message" #message>
+                        <div *ngIf="appState == 'clear'" class="chat-room">
+                            
+                        </div>    
+                    </label>
+                </div>
+                <div class="large-12">
+                    <button type="sumbit" class="btn-default" value="Submit"></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="appState == 'clear'" class="chat-room">
+    <div class="large-12 columns">
+        <form class="form-room" (submit)="addMessage(message)">
+            <div class="row">
+                <div class="large-6 columns">
+                    <label>Add Messages
+                        <input type="text" placeholder="Enter the message" #message>
+                    </label>
+                </div>
+                <div class="large-12">
+                    <button type="sumbit" class="btn-default" value="Submit"></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

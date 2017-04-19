@@ -1,0 +1,33 @@
+{
+  "rooms" : {
+    "-KgCvxcaAZuZrcI5R6fu" : {
+      "id" : "Room4",
+      "userId" : "jay"
+    },
+    "sdfsdfsdfsdf" : {
+      "id" : 2,
+      "userId" : "user4"
+    },
+    "ssssaa111" : {
+      "id" : "1",
+      "userId" : "user1"
+    },
+    "ssssaawww111" : {
+      "id" : "room2",
+      "userId" : "user2"
+    },
+    "ssssqqqaa111" : {
+      "id" : "room3",
+      "userId" : "user3"
+    }
+  },
+  
+  "messages" : {
+    "sssasdasdasd" : {
+      "room_id": "-KgCvxcaAZuZrcI5R6fu",
+      "message": "Hello World",
+      "userId": "user name",
+      "created_at": "2017-03-28"
+    }
+  }
+}
