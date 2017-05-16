@@ -1,55 +1,119 @@
+/*General*/
+
+html {
+    height: 100%;
+    font-size: 100%;
+}
+
+body {
+    background-color: white;
+}
+
+/*Sidebar*/
+
 .sidebar {
     position: fixed;
     top: 0px;
-    bottom: 0px;
-    left: 0;
-    z-index: 1000;
-    display: block;
-    padding: 20px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    background-color: #f5f5f5;
-    border-right: 1px solid;
+    left: 0px;
+    width: 10%;
+    height: 100%;
+    background-color: lightgray;
+    z-index: 1;
 }
 
-.add-room {
-    border-color: black;
-    position: relative;
-    left: 500px;
-    top: 200px;
-    background-color: #f5f5f5;
-    border-right: 1px solid;
+.sidebar-header {
+    padding-left: 10px;
+    margin-bottom: 5px;
+    display: table;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.form-class {
-    position: center;
-    background-color: black;
+.sidebar-header .new-room {
+    margin: 0 5px;
 }
 
-.submit-button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
+.sidebar-title {
     display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
+    padding-right: 15px;
+}
+
+.sidebar .room-name {
+    padding-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.sidebar .room-name:hover {
     cursor: pointer;
 }
 
-.chat-room {
-    border-color: black;
-    position: relative;
-    left: 500px;
-    top: 200px;
-    background-color: #f5f5f5;
-    border-right: 1px solid;
+/*Messages*/
+
+.messages-body {
+    padding-right: 10px;
 }
 
-.message-display{
-    position: absolute;
-    left: 10px;
-    top: 0px;
+.messages-body .username {
+    font-weight: bold;
 }
+
+.messages-body .timestamp {
+    float: right;
+    padding-right: 100px;
+}
+
+.messages-body .username .timestamp {
+    display: inline-block;
+}
+
+.messages-body .user-message {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: inline-block;
+}
+
+.message-field {
+    bottom: 0;
+    left: 300px;
+    padding-bottom: 5px;
+    position: absolute;
+}
+
+.message-box {
+    width: 1500px;
+    height: 30px;
+    bottom: 50px;
+    position: fixed;
+    padding: 5px;
+}
+
+.messages-text {
+    display: table;
+    box-sizing: content-box;
+    top: 20px;
+    left: 100px;
+    width: 80%;
+    position: relative;
+    overflow: scroll;
+}
+
+.room-header {
+    top: 10px;
+}
+
+.add-room {
+    top: 150px;
+    bottom: 150px;
+    right: 350px;
+    left: 350px;
+    position: relative;
+    padding: 5px;
+}
+
+.text-button {
+    bottom: 10px;
+    padding: 5px;
+    position: fixed;
+}
+

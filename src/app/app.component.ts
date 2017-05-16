@@ -5,6 +5,7 @@ import { NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Room } from './Room';
 import { Messages } from './Messages';
 import { ChatroomComponent } from './components/chatroom/chatroom.component';
+import { CookieService } from 'angular2-cookie/core';
 
 @Component({
   moduleId: module.id,
@@ -18,8 +19,9 @@ export class AppComponent implements OnInit {
   messages: Messages[];
   room: string;
   appState: string;
+  message: string;
   
-  constructor(private _firebaseService:FirebaseService) {
+  constructor(private _firebaseService:FirebaseService, private _cookieService:CookieService) {
     
   }
   
@@ -33,27 +35,42 @@ export class AppComponent implements OnInit {
     });
   }
   
+  getCookie(){
+    //console.log(this._cookieService.get(key));
+    return this._cookieService.get("Username");
+  }
+  
+  setCookie(key: string, value: string){
+    return this._cookieService.put(key, value);
+  }
+  
   changeState(state){
     this.appState = state;
   }
   
   chatRoom(state, room){
     this.appState = state;
-    this.room = room
+    this.room = room;
+    //this.messages = this._firebaseService.displayMessages(room.$key);
   }
   
-  addRoom(id:string, userId:string){
-    if(id, userId){
+  //displayMessages(room){
+    //this.messages = this._firebaseService.displayMessages(room);
+  //}
+  
+  addRoom(id:string){
+    if(id){
       var newRoom = {
         id: id,
-        userId: userId
+        userId: this.getCookie()
       }
       this._firebaseService.addRoom(newRoom);
+      console.log(newRoom);
       this.changeState('default');
     } else {
-      alert("enter id and userId");
+      alert("enter room id");
       this.changeState('default');
-    }  
+    }
   }  
     
   addMessage(room:string,message:string){
@@ -61,14 +78,22 @@ export class AppComponent implements OnInit {
       var newMessage = {
         created_at: Date.now(),
         message: message,
-        room_id: room
+        room_id: room,
+        userId: this.getCookie()
       }
       this._firebaseService.addMessage(newMessage);
-      this.changeState('clear');
+      console.log(newMessage);
+      this.message = null;
     } else {
       alert("Enter a message");
-      this.changeState('clear');
+      this.message = null;
     }  
+  }
+  
+  userName(room){
+    if(room.userId === null){
+      room.userId = this.getCookie();
+    }
   }
   
 }

@@ -23,6 +23,17 @@ export class FirebaseService{
         return this.messages;
     }
     
+     //displayMessages(room){
+        //this.messages = this.af.database.list('/messages') as FirebaseListObservable<Messages[]>;
+        //return this.messages.orderByChild("room_id").equalTo(room);
+       // this.messages = this.af.database.list('/messages', {
+          //  query: {
+              //  orderByChild: 'room_id'
+            //}
+        //});
+        //return this.messages
+    //}
+    
     addRoom(newRoom){
         return this.rooms.push(newRoom);
     }

@@ -1,99 +1,72 @@
-<div class="col-sm-3 col-md-2 sidebar">
-    <h1><strong>Bloc Chat</strong></h1>
-    <button (click)="changeState('add')" class="btn btn-default">New Room</button>
-    <br/>
-    <ul class="nav nav-sidebar">
-         <li class="active text" *ngFor="let room of rooms"><button (click)="chatRoom('chat', room.$key)" class="btn btn-link">{{room.id}}</button></li>
-    </ul>
-</div>   
+<div class="sidebar">
+    <div class="sidebar-header">
+        <h1 class="sidebar-title">Bloc Chat</h1>
+        <button (click)="changeState('add')" type="button" class="new-room">New Room</button>
+        <br/>
+    </div>
+    <div class="sidebar-body">
+        <p class="room-name" *ngFor="let room of rooms"><button (click)="chatRoom('chat', room.$key)" class="btn btn-link">{{room.id}}</button></p>
+    </div>
+</div>
 
 <div *ngIf="appState == 'add'">
     <div class="add-room">
-        <div class="large-12 columns">
-            <h3>Add Room</h3>
-            <form class="form-room" (submit)="addRoom(id.value, userId.value)">
-                <div class="row">
-                    <div class="large-6 columns">
-                        <label>Id
-                            <input type="text" placeholder="Id" #id>
-                        </label>        
-                    </div>
-                    <div class="large-6 columns">
-                        <label>User Id
-                            <input type="text" placeholder="Id" #userId>
-                        </label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="large-12">
-                        <button type="sumbit" class="btn-primary btn sumbit-button" value="Submit"></button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<div *ngIf="appState == 'default'">
-    <div class="col-sm-3 col-md-2 sidebar">
-        <h1><strong>Bloc Chat</strong></h1>
-        <button (click)="changeState('add')" class="btn btn-default">New Room</button>
-        <br/>
-        <ul class="nav nav-sidebar">
-            <li class="active text" *ngFor="let room of rooms"><a href="#">{{room.id}}</a></li>
-        </ul>
-    </div>        
-</div>
-
-<div *ngIf="appState == 'chat'" class="chat-room">
-    <div *ngIf="room" class="chat-room">
-        <div class="chat-room">
-            <div class="large-12 columns">
-                <form class="form-room" (submit)="addMessage(room, message.value)">
-                    <div class="row">
-                        <div class="large-6 columns">
-                            <label>Add Messages
-                                <input type="text" placeholder="Enter the message" #message>
-                                <div *ngIf="appState == 'clear'" class="chat-room"></div>    
-                            </label>
-                        </div>
-                        <div class="large-12">
-                            <button type="sumbit" class="btn-default" value="Submit"></button>
-                        </div>
-                    </div>
-                </form>
-                <div class="message-display" *ngIf="appState == 'chat'">
-                    <h1 class="active text" *ngFor="let message of messages">
-                        <div *ngIf="room === message.room_id">
-                            {{message.message}}
-                        </div>
-                    </h1>
-                </div>
-            </div>    
-        </div>
-    </div>
-</div>
-
-<div *ngIf="appState == 'clear'" class="chat-room">
-    <div class="large-12 columns">
-        <form class="form-room" (submit)="addMessage(room, message.value)">
+        <h4>New Room</h4>
+        <form class="form-room" (submit)="addRoom(id.value)">
             <div class="row">
                 <div class="large-6 columns">
-                    <label>Add Messages
-                        <input type="text" placeholder="Enter the message" #message>
-                    </label>
+                    <label> ROOM                       
+                        <input class="input-box" type="text" placeholder="Id" #id>
+                    </label>        
                 </div>
+            </div>
+            <div class="row">
                 <div class="large-12">
-                    <button type="sumbit" class="btn-default" value="Submit"></button>
+                    <button type="sumbit" class="btn-primary btn sumbit-button" value="Submit">Add Room</button>
                 </div>
             </div>
         </form>
-        <div class="message-display" *ngIf="appState == 'clear'">
-            <h1 class="active text" *ngFor="let message of messages">
+    </div>
+</div>
+
+
+<div class="title-bar">
+    <div *ngIf="appState == 'default'">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <h1><strong>Bloc Chat</strong></h1>
+            <button (click)="changeState('add')" class="btn btn-default">New Room</button>
+            <br/>
+            <ul class="nav nav-sidebar">
+                <h3 class="roomTitle"><li class="active text" *ngFor="let room of rooms"><a href="#">{{room.id}}</a></li></h3>
+            </ul>
+        </div>
+    </div>    
+</div>
+
+<div class="messages-text">
+    <div class="messages-header">  
+        <div *ngIf="appState === 'chat'" class="chat-room">
+            <div *ngFor="let message of messages">
                 <div *ngIf="room === message.room_id">
-                    {{message.message}}
+                     <h3 class="messages-text">{{message.userId}}: {{message.message}}</h3>
                 </div>
-            </h1>
+            </div>    
+            <div class="message-field">
+                <form class="form-room" (submit)="addMessage(room, message.value)">
+                    <div class="large-6 columns">
+                        <label>
+                            <input type="text" name="input" placeholder="Type your message here" class="message-box" #message>
+                        </label>
+                        <button type="sumbit" class="btn-primary btn sumbit-button text-button" value="Submit">Send message</button>
+                    </div>
+                </form>
+            </div>
+            <div class="user-name" *ngIf="room.userId === null">
+                <label>
+                    <input type="text" name="input" placeholder="Type your username" class="user-box" #user>
+                </label>
+                <button type="sumbit" class="btn-primary btn sumbit-button text-button" value="Submit" (click)="userName(room.$key)">User</button>    
+            </div>
         </div>
     </div>
 </div>
